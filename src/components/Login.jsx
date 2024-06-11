@@ -9,6 +9,7 @@ import {
   FormFeedback,
 } from 'reactstrap';
 
+import Success from './Success';
 
 import axios from 'axios';
 
@@ -80,17 +81,15 @@ export default function Login() {
     }
 
     axios
-      .get('https://6540a96145bedb25bfc247b4.mockapi.io/api/login')
-      .then((res) => {
-        const user = res.data.find(
-          (item) => item.password == form.password && item.email == form.email
-        );
-        if (user) {
-          setForm(initialForm);
-          history.push('/main');
-        } else {
-          history.push('/error');
-        }
+      .post('https://reqres.in/api/users', form ) 
+      .then((response) => {
+        console.log('Success:', response.data);
+        setForm(initialForm);
+        history.push('/success');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        history.push('/error');
       });
   };
 

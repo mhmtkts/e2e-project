@@ -1,5 +1,6 @@
 export default function Success() {
-    <p >
+    return(<h1 >
         Giriş Başarılı
-    </p>
-}
+    </h1>
+)}
+    
